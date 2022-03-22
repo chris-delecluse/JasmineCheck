@@ -136,7 +136,13 @@ let swapKeysAndValues = (object) => {
 }
 
 let sumKeysAndValues = (object) => {
-    return object
+        let sum = 0
+        for(let el in object) {
+            if(object.hasOwnProperty(el)) {
+                sum += parseFloat(object[el]) + parseInt(el)
+            }
+        }
+        return sum
 }
 
 let removeCapitals = (string) => {
