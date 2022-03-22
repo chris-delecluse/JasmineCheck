@@ -26,7 +26,18 @@ let reverseWordsInArray = (array) => {
 }
 
 let everyPossiblePair = (array) => {
-    return array
+    const result = []
+
+    for (let i = 0; i < array.length; i++) {
+        for (let j = i + 1; j < array.length; j++) {
+            const temp = []
+            temp.push(array[j], array[i])
+            temp.sort()
+            result.push(temp)
+        }
+    }
+
+    return result.sort()
 }
 
 let allElementsExceptFirstThree = (array) => {
@@ -40,7 +51,7 @@ let addElementToBeginning = (array, element) => {
 }
 
 let sortByLastLetter = (array) => {
-    return array
+    return array.sort((a, b) => a.charCodeAt(a.length -1) - b.charCodeAt(b.length - 1))
 }
 
 let getFirstHalf = (string) => {
@@ -92,8 +103,7 @@ let calculateAverage = (array) => {
 }
 
 let getElementsUntilGreaterThanFive = (array) => {
-    return array.filter(el => { return el <= 5 })
-
+    return array.filter(el => { return el <= 5 }).splice(0, 6)
 }
 
 let convertArrayToObject = (array) => {
@@ -105,47 +115,72 @@ let convertArrayToObject = (array) => {
 }
 
 let getAllLetters = (array) => {
-    return array
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
+    const newArr = []
+    array.forEach(el => {
+        alphabet.forEach(elem => {
+            if (el.includes(elem)) {
+                newArr.push(elem)
+            }
+        })
+    })
+    return [...new Set(newArr)].sort()
 }
 
 let swapKeysAndValues = (object) => {
-    return 'Write your method here';
+    let ret = {};
+    for(let el in object){
+        ret[object[el]] = el;
+    }
+    return ret;
 }
 
 let sumKeysAndValues = (object) => {
-    return 'Write your method here';
+    return object
 }
 
 let removeCapitals = (string) => {
-    return 'Write your method here';
+    const regex = new RegExp(/[A-Z]+/g)
+    return string.replace(regex, '')
 }
 
 let roundUp = (number) => {
-    return 'Write your method here';
+    return Math.ceil(number)
 }
 
 let formatDateNicely = (date) => {
-    return 'Write your method here';
+    return date.toLocaleDateString()
 }
 
 let getDomainName = (string) => {
-    return 'Write your method here';
+    return string.substring(string.indexOf('@') + 1, string.indexOf('.com'))
 }
 
 let titleize = (string) => {
-    return 'Write your method here';
+    // let splitString = string.split('.')
+    // splitString.forEach(el => {
+    //     if (el.length > 3 ) {
+    //         el.charAt(0).toUpperCase()
+    //     }
+    // })
+    //
+    // return splitString
 }
 
 let checkForSpecialCharacters = (string) => {
-    return 'Write your method here';
+    const regex = new RegExp(/[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/)
+    return regex.test(string)
 }
 
 let squareRoot = (number) => {
-    return 'Write your method here';
+    return Math.sqrt(number)
 }
 
 let factorial = (number) => {
-    return 'Write your method here';
+    for (let i = number - 1; i >= 1; i--) {
+        number *= i;
+    }
+    return number
 }
 
 let findAnagrams = (string) => {
@@ -153,8 +188,18 @@ let findAnagrams = (string) => {
 }
 
 let convertToCelsius = (number) => {
-    return 'Write your method here';
+    return Math.ceil((number - 32) / 1.8)
 }
 
 let letterPosition = (array) => {
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+    const newArr = []
+    array.forEach(el => {
+        alphabet.forEach(elem => {
+            if (elem === el || elem.toUpperCase() === el) {
+                newArr.push(alphabet.indexOf(elem) + 1)
+            }
+        })
+    })
+    return newArr
 }
